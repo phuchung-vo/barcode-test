@@ -31,7 +31,7 @@ class _BarcodeScreenState extends State<BarcodeScreen> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+          '#ff6666', 'Cancel', true, ScanMode.BARCODE,);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -73,10 +73,10 @@ class _BarcodeScreenState extends State<BarcodeScreen> {
                     data: _scanBarcode,
 
                     /// Bar code format
-                    barcode: Barcode.isbn(),
+                    barcode: Barcode.code128(escapes: true),
                     style: const TextStyle(fontSize: 20),
                   ),
-                  Gap.medium(),
+                  Gap.small(),
                   AppButton(
                       onPressed: scanBarcodeNormal, text: 'Start barcode scan'),
                 ],
